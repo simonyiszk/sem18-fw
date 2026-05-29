@@ -914,7 +914,9 @@ static void CheckButtons( void )
         Buttons_SetRepeatedPresses( BUTTON_SW2, TRUE );
         Buttons_SetRepeatedPresses( BUTTON_SW3, TRUE );
         // Enable alarm
+        gsAlarmA.Alarm = RTC_ALARM_A;
         gsAlarmA.AlarmDateWeekDaySel = RTC_ALARMDATEWEEKDAYSEL_DATE;
+        gsAlarmA.AlarmDateWeekDay = 1u;
         gsAlarmA.AlarmTime.Seconds = 0u;
         gsAlarmA.AlarmMask = RTC_ALARMMASK_DATEWEEKDAY;  // date don't care
         gsAlarmA.AlarmSubSecondMask = RTC_ALARMSUBSECONDMASK_ALL;  // we don't care for subseconds
@@ -926,7 +928,9 @@ static void CheckButtons( void )
         // If it's not yet enabled
         if( !__HAL_RTC_ALARM_GET_IT_SOURCE( &hrtc, RTC_IT_ALRA ) )
         {
+          gsAlarmA.Alarm = RTC_ALARM_A;
           gsAlarmA.AlarmDateWeekDaySel = RTC_ALARMDATEWEEKDAYSEL_DATE;
+          gsAlarmA.AlarmDateWeekDay = 1u;
           gsAlarmA.AlarmTime.Seconds = 0u;
           gsAlarmA.AlarmMask = RTC_ALARMMASK_DATEWEEKDAY;  // date don't care
           gsAlarmA.AlarmSubSecondMask = RTC_ALARMSUBSECONDMASK_ALL;  // we don't care for subseconds
@@ -963,7 +967,9 @@ static void CheckButtons( void )
           Buttons_SetRepeatedPresses( BUTTON_SW2, FALSE );
           Buttons_SetRepeatedPresses( BUTTON_SW3, FALSE );
           // Enable alarm
+          gsAlarmA.Alarm = RTC_ALARM_A;
           gsAlarmA.AlarmDateWeekDaySel = RTC_ALARMDATEWEEKDAYSEL_DATE;
+          gsAlarmA.AlarmDateWeekDay = 1u;
           gsAlarmA.AlarmTime.Seconds = 0u;
           gsAlarmA.AlarmMask = RTC_ALARMMASK_DATEWEEKDAY;  // date don't care
           gsAlarmA.AlarmSubSecondMask = RTC_ALARMSUBSECONDMASK_ALL;  // we don't care for subseconds
@@ -1046,7 +1052,7 @@ void Task_Clock_Init( void )
   if( __HAL_PWR_GET_FLAG( PWR_FLAG_WUFI ) )
   {
     gsWakeupTimer.bEnabled = TRUE;
-    gsWakeupTimer.u32TimerMs = HAL_GetTick() + 3000u;  // Turn on for 5 sec only
+    gsWakeupTimer.u32TimerMs = HAL_GetTick() + 3000u;  // Turn on for 3 sec only
   }
 }
 
