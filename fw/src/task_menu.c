@@ -24,6 +24,7 @@
 #include "tasks.h"
 #include "task_clock.h"
 #include "task_tetris.h"
+#include "task_snake.h"
 
 // Own include
 #include "task_menu.h"
@@ -112,7 +113,7 @@ static const S_MENU gsCalibrateClockMenu =
 //! \brief Structure containing the main (root) menu
 static const S_MENU gsMainMenu =
 {
-  3u,    // Number of items
+  4u,    // Number of items
   NULL,  // When entering
   NULL,  // When exiting
   {
@@ -134,6 +135,16 @@ static const S_MENU gsMainMenu =
       {
         .pfnInitFunction = Task_Tetris_Init,
         .pfnMainCycleFunction = Task_Tetris_Cycle
+      }
+    },
+    {
+      .pu8ItemString = "Snake",
+      .bSelectable = TRUE,
+      .eAction = MENU_ACTION_WIDGET_TASK,
+      .pAction = &(S_MENU_WIDGET_TASK)
+      {
+        .pfnInitFunction = Task_Snake_Init,
+        .pfnMainCycleFunction = Task_Snake_Cycle
       }
     },
     {
