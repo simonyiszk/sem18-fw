@@ -1,2 +1,10 @@
 fw/Debug
 fw/.settings
+/doc/documentation.synctex.gz
+/doc/documentation.aux
+/doc/documentation.log
+/doc/documentation.pdf
+/doc/documentation.out
+/doc/figures/*-eps-converted-to.pdf
+/doc/figures/ipe/*.autosave.ipe
+
